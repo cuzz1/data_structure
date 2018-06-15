@@ -58,15 +58,32 @@ public class Array {
         size++;
     }
 
+    // 获取index索引位置的元素
+    public int get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Get failed, index is illegal");
+        }
+        return data[index];
+    }
+
+    // 修改index索引的元素
+    public void set(int index, int e) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Set failed, index is illegal");
+        }
+        data[index] = e;
+    }
+
+
     @Override
     public String toString() {
         StringBuffer res = new StringBuffer();
-        res.append(String.format("Array: size = %d, capacity = %d",size, data.length));
+        res.append(String.format("Array: size = %d, capacity = %d\n",size, data.length));
         res.append("[");
         for (int i = 0; i < size; i++) {
             res.append(data[i] + ", ");
         }
-        res.replace(res.length()-1, res.length(), "]");
+        res.replace(res.length()-2, res.length(), "]");
         return res.toString();
     }
 }
