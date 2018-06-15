@@ -57,4 +57,16 @@ public class Array {
         data[index] = e;
         size++;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer res = new StringBuffer();
+        res.append(String.format("Array: size = %d, capacity = %d",size, data.length));
+        res.append("[");
+        for (int i = 0; i < size; i++) {
+            res.append(data[i] + ", ");
+        }
+        res.replace(res.length()-1, res.length(), "]");
+        return res.toString();
+    }
 }
