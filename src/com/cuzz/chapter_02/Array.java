@@ -1,12 +1,12 @@
 package com.cuzz.chapter_02;
 
-public class Array {
-    private int[] data;
+public class Array<E> {
+    private E[] data;
     private int size;
 
     // 构造函数, 传入数组的容量capacity构造函数
     public Array(int capacity) {
-        data = new int[capacity];
+        data = (E[]) new Object[capacity];
         size = 0;
     }
 
@@ -31,23 +31,24 @@ public class Array {
     }
 
     // 所有元素中添加一个新的元素
-    public void addList(int e) {
+    public void addList(E e) {
         add(size, e);
     }
 
     // 在所有元素前添加一个新的元素
-    public void addFirst(int e) {
+    public void addFirst(E e) {
         add(0, e);
     }
 
     // 在第index位置插入一个元素e
-    public void add (int index, int e) {
-        if (size == data.length) {
-            throw new IllegalArgumentException("AddList failed");
-        }
+    public void add (int index, E e) {
 
         if (index < 0 || index > size) {
-            throw new IllegalArgumentException("AddList failed");
+            throw new IllegalArgumentException("AddList failed, index is illegal");
+        }
+
+        if (size == data.length) {
+            resize(2 * data.length);
         }
 
         for (int i = size - 1; i >= index; i--) {
@@ -58,8 +59,18 @@ public class Array {
         size++;
     }
 
+    private void resize(int newCapacity) {
+        System.out.println(
+                String.format("**　old capacity is %d, new capacity is %d", getCapacity(), newCapacity));
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
+    }
+
     // 获取index索引位置的元素
-    public int get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed, index is illegal");
         }
@@ -67,7 +78,7 @@ public class Array {
     }
 
     // 修改index索引的元素
-    public void set(int index, int e) {
+    public void set(int index, E e) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed, index is illegal");
         }
@@ -75,9 +86,9 @@ public class Array {
     }
 
     // 查找数组中是否有元素e
-    public boolean contains(int e) {
+    public boolean contains(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return true;
             }
         }
@@ -85,9 +96,9 @@ public class Array {
     }
 
     // 查找数组中的元素e所在的索引，如果不存在元素e,则返回-1
-    public int find(int e) {
+    public int find(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return i;
             }
         }
@@ -95,32 +106,36 @@ public class Array {
     }
 
     // 删除数值第index位置的元素, 并返回该元素
-    public int remove(int index) {
+    public E remove(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("remove filed, index is illegal");
         }
 
-        int res = data[index];
+        if (size == getCapacity() / 4) {
+            resize(getCapacity() / 2);
+        }
+        E res = data[index];
 
         for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
         }
+        data[size] = null;
         size --;
         return res;
     }
 
     // 从数组中移除第一个元素
-    public int removeFirst() {
+    public E removeFirst() {
         return remove(0);
     }
 
     // 从数值移除最后一个元素
-    public int removeLast() {
+    public E removeLast() {
         return remove(size - 1);
     }
 
     // 从数值中删除元素e
-    public void removeElement(int e) {
+    public void removeElement(E e) {
         int index = find(e);
         if (index != -1) {
             remove(index);

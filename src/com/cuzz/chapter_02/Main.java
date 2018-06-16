@@ -2,12 +2,12 @@ package com.cuzz.chapter_02;
 
 public class Main {
     public static void main(String[] args) {
-        Array array = new Array(20);
-        for (int i = 0; i < 10; i++) {
-            array.addList(i);
+        Array<String> array = new Array<>();
+        for (int i = 0; i < 20; i++) {
+            array.addList(i + "");
         }
 
-        array.add(1, 100);
+        array.add(1, "aa");
         System.out.println(array);
 
         array.remove(2);
@@ -15,6 +15,11 @@ public class Main {
 
         array.removeFirst();
         System.out.println(array);
+
+        for (int i = 0; i < 15; i++) {
+            array.removeFirst();
+            System.out.println(array);
+        }
 
 
     }
