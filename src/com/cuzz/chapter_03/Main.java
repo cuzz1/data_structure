@@ -8,5 +8,13 @@ public class Main {
         stack.push(3);
         stack.push(4);
         System.out.println(stack);
+
+        ArrayQueue<String> queue = new ArrayQueue<>();
+        queue.enquene("a");
+        queue.enquene("b");
+        queue.enquene("c");
+        queue.enquene("d");
+        System.out.println(queue);
+
     }
 }
