@@ -16,5 +16,15 @@ public class Main {
         queue.enquene("d");
         System.out.println(queue);
 
+        LoopQueue<String> loopQueue = new LoopQueue<>();
+        loopQueue.enquene("aa");
+        loopQueue.enquene("bb");
+        loopQueue.enquene("cc");
+        loopQueue.enquene("dd");
+        loopQueue.enquene("dd");
+        System.out.println(loopQueue);
+        loopQueue.dequene();
+        System.out.println(loopQueue);
+
     }
 }
