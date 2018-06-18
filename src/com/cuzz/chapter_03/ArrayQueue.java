@@ -29,12 +29,12 @@ public class ArrayQueue<E> implements Queue<E>{
     }
 
     @Override
-    public void enquene(E e) {
+    public void enqueue(E e) {
         array.addList(e);
     }
 
     @Override
-    public E dequene() {
+    public E dequeue() {
         return array.removeFirst();
     }
 

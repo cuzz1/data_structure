@@ -10,20 +10,20 @@ public class Main {
         System.out.println(stack);
 
         ArrayQueue<String> queue = new ArrayQueue<>();
-        queue.enquene("a");
-        queue.enquene("b");
-        queue.enquene("c");
-        queue.enquene("d");
+        queue.enqueue("a");
+        queue.enqueue("b");
+        queue.enqueue("c");
+        queue.enqueue("d");
         System.out.println(queue);
 
         LoopQueue<String> loopQueue = new LoopQueue<>();
-        loopQueue.enquene("aa");
-        loopQueue.enquene("bb");
-        loopQueue.enquene("cc");
-        loopQueue.enquene("dd");
-        loopQueue.enquene("dd");
+        loopQueue.enqueue("aa");
+        loopQueue.enqueue("bb");
+        loopQueue.enqueue("cc");
+        loopQueue.enqueue("dd");
+        loopQueue.enqueue("dd");
         System.out.println(loopQueue);
-        loopQueue.dequene();
+        loopQueue.dequeue();
         System.out.println(loopQueue);
 
     }
