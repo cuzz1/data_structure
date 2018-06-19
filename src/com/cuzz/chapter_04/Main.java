@@ -22,5 +22,18 @@ public class Main {
         stack.push(3);
         stack.push(4);
         System.out.println(stack);
+
+        LinkedlistQueue<Integer> queue = new LinkedlistQueue<>();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.enqueue(5);
+        queue.enqueue(6);
+        System.out.println(queue);
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        System.out.println(queue);
     }
 }
